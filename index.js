@@ -96,6 +96,10 @@ function checkAnwser() {
                 timer = null;
             }
 
+            setTimeout(function () {
+                window.scrollTo(0, document.body.scrollHeight);
+            }, 10);
+
             riddleButton.classList.add('shake-me');
             timer = setTimeout(function () {
                 riddleButton.classList.remove('shake-me');

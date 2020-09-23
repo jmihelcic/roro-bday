@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Bad+Script&display=swap" rel="stylesheet">
     
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         html, body {
             width: 100%;
             height: 100%;
@@ -48,6 +52,7 @@
             font-weight: 500;
             font-size: 1.3em;
             padding: 16px;
+            margin-bottom: 2em;
 
             background: #560434 !important;
             border: #560434 !important;
@@ -144,7 +149,7 @@
             </div>
 
             <p id="riddle-error" class="mt-2 p-2 text-center"></p>
-            <button id="riddle-button" class="btn btn-primary col-12 mb-3" onclick="checkAnwser()">Found it!</button>
+            <button id="riddle-button" class="btn btn-primary col-12" onclick="checkAnwser()">Found it!</button>
 
             
             </div>
