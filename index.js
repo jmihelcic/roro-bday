@@ -83,37 +83,45 @@ var timer = null;
 function checkAnwser() {
     var value = riddleAnwser.value.toLowerCase().trim();
 
-    if (value == '') {
-        if (timer != null) {
-            clearTimeout(timer);
-            timer = null;
+    if (value == 'reset') {
+        currentRiddleIndex = 0;
+        setupRiddle();
+        return;
+    }
+
+    if (value != 'hax0r') {
+        if (value == '') {
+            if (timer != null) {
+                clearTimeout(timer);
+                timer = null;
+            }
+
+            riddleButton.classList.add('shake-me');
+            timer = setTimeout(function () {
+                riddleButton.classList.remove('shake-me');
+                timer = null;
+            }, 500);
+
+            riddleError.classList.add('show-error');
+            riddleError.innerHTML = 'You need to write something dummy :3';
+            return;
         }
 
-        riddleButton.classList.add('shake-me');
-        timer = setTimeout(function () {
-            riddleButton.classList.remove('shake-me');
-            timer = null;
-        }, 500);
+        var match = riddles.find(function (riddle) {
+            return riddle.codeword === value;
+        });
 
-        riddleError.classList.add('show-error');
-        riddleError.innerHTML = 'You need to write something dummy :3';
-        return;
-    }
+        if (!match) {
+            riddleError.classList.add('show-error');
+            riddleError.innerHTML = 'Hmmm nope, thats not the codeword for any riddle. Did you write it correctly?';
+            return;
+        }
 
-    var match = riddles.find(function (riddle) {
-        return riddle.codeword === value;
-    });
-
-    if (!match) {
-        riddleError.classList.add('show-error');
-        riddleError.innerHTML = 'Hmmm nope, thats not the codeword for any riddle. Did you write it correctly?';
-        return;
-    }
-
-    if (currentRiddleIndex !== match.id) {
-        riddleError.classList.add('show-error');
-        riddleError.innerHTML = 'Oooo found one! But not the correct one. Please put it back. You might need it later :3';
-        return;
+        if (currentRiddleIndex !== match.id) {
+            riddleError.classList.add('show-error');
+            riddleError.innerHTML = 'Oooo found one! But not the correct one. Please put it back. You might need it later :3';
+            return;
+        }
     }
 
     currentRiddleIndex++;
