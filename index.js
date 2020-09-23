@@ -78,10 +78,23 @@ var riddles = [
     }
 ];
 
+var timer = null;
+
 function checkAnwser() {
     var value = riddleAnwser.value.toLowerCase().trim();
 
     if (value == '') {
+        if (timer != null) {
+            clearTimeout(timer);
+            timer = null;
+        }
+
+        riddleButton.classList.add('shake-me');
+        timer = setTimeout(function () {
+            riddleButton.classList.remove('shake-me');
+            timer = null;
+        }, 500);
+
         riddleError.classList.add('show-error');
         riddleError.innerHTML = 'You need to write something dummy :3';
         return;
