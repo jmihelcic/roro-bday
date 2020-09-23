@@ -13,7 +13,7 @@ var currentRiddleIndex = +(localStorage.getItem('roro-index') || 0);
 var riddles = [
     {
         "id": 0,
-        "text": "Bon Appétit!<br><br>While you're munching on these sweet delights,<br>there's something hiding between these chocolaty bites.",
+        "text": "Bon Appétit!<br><br>While you're munching on these sweet delights,<br>there's something hiding between those chocolaty bites.",
         "codeword": "im ready"
     },
     {
